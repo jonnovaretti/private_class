@@ -14,8 +14,8 @@ class ProfessorsController < ApplicationController
   def edit; end
 
   def create
-    @professor = Professor.new(professor_params)
     respond_to do |format|
+      @professor = Professor.new(professor_params)
       if @professor.save
         format.html { redirect_to @professor, notice: 'Professor was successfully created.' }
       else
@@ -48,6 +48,6 @@ class ProfessorsController < ApplicationController
   end
 
   def professor_params
-    params.require(:professor).permit(:name, :email, :password)
+    params.require(:professor).permit(:name, :email, :password, :password_confirmation)
   end
 end

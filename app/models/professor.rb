@@ -11,4 +11,7 @@ class Professor < ApplicationRecord
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
                     format: { with: VALID_EMAIL_EXPRESSION }
+
+  validates :password, presence: true
+  validates :password, confirmation: { case_sensitive: true }
 end

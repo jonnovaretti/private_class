@@ -19,10 +19,20 @@ class ProfessorsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Professor.count') do
       post professors_url, params: { professor: { email: 'email@any.com',
                                                   name: 'professor name',
-                                                  password: 'pass2233' } }
+                                                  password: 'pass2233',
+                                                  password_confirmation: 'pass2233' } }
     end
 
     assert_redirected_to professor_url(Professor.last)
+  end
+
+  test "should not create professor when password and password confirmation don't match" do
+    post professors_url, params: { professor: { email: 'email@any.com',
+                                                name: 'professor name',
+                                                password: 'pass2233',
+                                                password_confirmation: 'pass1234' } }
+    byebug
+    assert_equal 422, status
   end
 
   test 'should show professor' do
