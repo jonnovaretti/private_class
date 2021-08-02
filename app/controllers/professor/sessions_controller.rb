@@ -14,6 +14,11 @@ class Professor
       end
     end
 
+    def destroy
+      session[:professor_id] = nil
+      render :index
+    end
+
     private
 
     def session_params
