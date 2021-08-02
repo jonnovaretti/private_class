@@ -31,7 +31,6 @@ class ProfessorsControllerTest < ActionDispatch::IntegrationTest
                                                 name: 'professor name',
                                                 password: 'pass2233',
                                                 password_confirmation: 'pass1234' } }
-    byebug
     assert_equal 422, status
   end
 

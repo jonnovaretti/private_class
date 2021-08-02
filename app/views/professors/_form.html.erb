@@ -1,7 +1,7 @@
 <%= form_with(model: professor) do |form| %>
   <% if professor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+      <h2>Have ocorred errors</h2>
 
       <ul>
         <% professor.errors.each do |error| %>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label "Nome", class: "form-label" %>
+    <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label "Email", class: "form-label" %>
+    <%= form.label :email, class: "form-label" %>
     <%= form.text_field :email, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label "Senha", class: "form-label" %>
+    <%= form.label :password, class: "form-label" %>
     <%= form.password_field :password, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label "Confirmação de senha", class: "form-label" %>
+    <%= form.label :password_confirmation, class: "form-label" %>
     <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Criar conta" %>
+    <%= form.submit "Signup" %>
   </div>
 <% end %>
