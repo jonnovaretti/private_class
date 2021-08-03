@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     post 'signin', to: 'sessions#create'
     get 'students', to: 'students#index'
     delete 'logout', to: 'sessions#destroy'
+    get 'invites', to: 'invites#index'
+    post 'invites', to: 'invites#post'
   end
 end
