@@ -1,23 +1,25 @@
-<%= form_with(scope: :invite) do |form| %>
-  <p id="notice"><%= notice %></p>
-  <% if @invite && @invite.errors.any? %>
-    <div id="error_explanation">
-      <h2>Have ocorred errors</h2>
+<div class="container">
+  <%= form_with(scope: :invite) do |form| %>
+    <p id="notice"><%= notice %></p>
+    <% if @invite && @invite.errors.any? %>
+      <div id="error_explanation">
+        <h2>Have ocorred errors</h2>
 
-      <ul>
-        <% @invite.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% @invite.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :student_email, class: "form-label" %>
+      <%= form.text_field :student_email, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Send invite" %>
     </div>
   <% end %>
-
-  <div class="mb-3">
-    <%= form.label :student_email, class: "form-label" %>
-    <%= form.text_field :student_email, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Send invite" %>
-  </div>
-<% end %>
+</div>
