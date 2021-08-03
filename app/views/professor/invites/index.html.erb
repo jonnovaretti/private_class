@@ -6,6 +6,8 @@
           <th scope="col">#</th>
           <th scope="col">Student email</th>
           <th scope="col">Valid until</th>
+          <th scope="col">Was verified</th>
+          <th scope="col">Verified at</th>
           <th scope="col">Sent at</th>
         </tr>
       </thead>
@@ -15,6 +17,8 @@
           <th scope="row"><%= invite.id %></th>
           <td><%= invite.student_email %></td>
           <td><%= invite.valid_until.strftime("%d/%m/%y") %></td>
+          <td><%= invite.is_verified ? 'verificado' : 'pendente' %></td>
+          <td><%= invite.verified_at&.strftime("%d/%m/%y %R") %></td>
           <td><%= invite.created_at.strftime("%d/%m/%y %R") %></td>
         </tr>
       <% end %>

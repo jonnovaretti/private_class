@@ -8,4 +8,9 @@ class Invite < ApplicationRecord
 
   belongs_to :professor
   before_save { self.valid_until = Date.today + 3 }
+
+  def verify
+    self.is_verified = true
+    self.verified_at = DateTime.now.utc
+  end
 end

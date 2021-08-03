@@ -11,4 +11,12 @@ class InviteTest < ActiveSupport::TestCase
 
     assert invite.save
   end
+
+  test 'should update verified column' do
+    invite = Invite.create(student_email: 'student@email.com', professor: @professor, identifier: SecureRandom.uuid)
+
+    invite.verify
+
+    assert invite.save
+  end
 end
