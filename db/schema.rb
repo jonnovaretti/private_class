@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_142552) do
+ActiveRecord::Schema.define(version: 2021_08_03_204229) do
+
+  create_table "invites", force: :cascade do |t|
+    t.string "student_email"
+    t.string "identifier"
+    t.date "valid_until"
+    t.integer "professor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_verified"
+    t.datetime "verified_at"
+    t.index ["professor_id"], name: "index_invites_on_professor_id"
+  end
 
   create_table "professors", force: :cascade do |t|
     t.string "name"

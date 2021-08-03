@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -33,10 +33,24 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Perform delivery
+  config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.perform_caching = false
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+
+  # Default email from
+  config.action_mailer.default_options = {from: Rails.application.credentials.mail_settings[:from]}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            Rails.application.credentials.mail_settings[:user_name],
+    password:             Rails.application.credentials.mail_settings[:password],
+    authentication:       'plain',
+    enable_starttls_auto: true }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -61,16 +75,7 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
-
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
-
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
 end

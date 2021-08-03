@@ -1,0 +1,55 @@
+<div class="container">
+  <% if @invites && @invites.any? %>  
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student email</th>
+          <th scope="col">Valid until</th>
+          <th scope="col">Was verified</th>
+          <th scope="col">Verified at</th>
+          <th scope="col">Sent at</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <th scope="row"><%= invite.id %></th>
+          <td><%= invite.student_email %></td>
+          <td><%= invite.valid_until.strftime("%d/%m/%y") %></td>
+          <td><%= invite.is_verified ? 'verificado' : 'pendente' %></td>
+          <td><%= invite.verified_at&.strftime("%d/%m/%y %R") %></td>
+          <td><%= invite.created_at.strftime("%d/%m/%y %R") %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="digg_pagination">
+        <%= will_paginate @invites, :container => false %>
+    </div>
+  <% end %>
+  <br>
+  <%= form_with(scope: :invite) do |form| %>
+    <p id="notice"><%= notice %></p>
+    <% if @invite && @invite.errors.any? %>
+      <div id="error_explanation">
+        <h2>Have ocorred errors</h2>
+
+        <ul>
+          <% @invite.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :student_email, class: "form-label" %>
+      <%= form.text_field :student_email, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Send invite" %>
+    </div>
+  <% end %>
+</div>

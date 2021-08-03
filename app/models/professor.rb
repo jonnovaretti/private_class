@@ -3,14 +3,14 @@ class Professor < ApplicationRecord
 
   has_secure_password
 
+  has_many :invites, dependent: :destroy
   before_save { self.email = email.downcase }
 
   validates :name, presence: true,
                    length: { minimum: 3, maximum: 20 }
 
   validates :email, presence: true,
-                    uniqueness: { case_sensitive: false },
-                    format: { with: VALID_EMAIL_EXPRESSION }
+                    uniqueness: { case_sensitive: false }
 
   validates :password, presence: true
   validates :password, confirmation: { case_sensitive: true }
