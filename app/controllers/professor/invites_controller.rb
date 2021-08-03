@@ -13,9 +13,8 @@ class Professor
       @invite = Invite.new(student_email: email_params, professor: @professor, identifier: SecureRandom.uuid)
 
       respond_to do |format|
-        result_email_send = StudentMailer.with(professor: @professor, invite: @invite).send_invite.deliver_now
-
-        if result_email_send && @invite.save
+        if @invite.save
+          StudentMailer.with(professor: @professor, invite: @invite).send_invite.deliver_now
           format.html { redirect_to professor_invites_url, notice: 'Invite was successfully sent.' }
         else
           format.html { render :index, status: :unprocessable_entity }
