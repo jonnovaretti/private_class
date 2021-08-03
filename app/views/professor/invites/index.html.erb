@@ -1,4 +1,30 @@
 <div class="container">
+  <% if @invites && @invites.any? %>  
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student email</th>
+          <th scope="col">Valid until</th>
+          <th scope="col">Sent at</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <th scope="row"><%= invite.id %></th>
+          <td><%= invite.student_email %></td>
+          <td><%= invite.valid_until.strftime("%d/%m/%y") %></td>
+          <td><%= invite.created_at.strftime("%d/%m/%y %R") %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="digg_pagination">
+        <%= will_paginate @invites, :container => false %>
+    </div>
+  <% end %>
+  <br>
   <%= form_with(scope: :invite) do |form| %>
     <p id="notice"><%= notice %></p>
     <% if @invite && @invite.errors.any? %>

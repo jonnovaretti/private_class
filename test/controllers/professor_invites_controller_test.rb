@@ -15,7 +15,7 @@ class ProfessorInvitesControllerTest < ActionDispatch::IntegrationTest
       post professor_invites_url, params: { invite: { student_email: 'student@gmail.com' } }
     end
 
-    assert_redirected_to professor_students_path
+    assert_redirected_to professor_invites_url
   end
 
   test 'should show up notice when invite is invalid' do

@@ -2,7 +2,11 @@ require 'securerandom'
 
 class Professor
   class InvitesController < ApplicationController
-    def index; end
+    def index
+      @invites = Invite.where(professor: current_professor)
+                       .paginate(page: params[:page], per_page: 6)
+                       .order(created_at: :desc)
+    end
 
     def post
       @professor = current_professor
@@ -12,7 +16,7 @@ class Professor
         result_email_send = StudentMailer.with(professor: @professor, invite: @invite).send_invite.deliver_now
 
         if result_email_send && @invite.save
-          format.html { redirect_to professor_students_path, notice: 'Invite was successfully sent.' }
+          format.html { redirect_to professor_invites_url, notice: 'Invite was successfully sent.' }
         else
           format.html { render :index, status: :unprocessable_entity }
         end
