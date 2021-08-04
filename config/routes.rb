@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   namespace :professor do
     get 'signin', to: 'sessions#index'
     post 'signin', to: 'sessions#create'
-    get 'students', to: 'students#index'
     delete 'logout', to: 'sessions#destroy'
+    get 'students', to: 'students#index'
     get 'invites', to: 'invites#index'
     post 'invites', to: 'invites#post'
   end
@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   namespace :student do
     get 'invites/:identifier', to: 'invites#index'
     post 'invites', to: 'invites#create'
+    get 'signin', to: 'sessions#index'
+    post 'signin', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy'
+    get 'lessons', to: 'lessons#index'
   end
 end
