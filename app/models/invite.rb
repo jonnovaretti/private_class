@@ -13,4 +13,8 @@ class Invite < ApplicationRecord
     self.is_verified = true
     self.verified_at = DateTime.now.utc
   end
+
+  def still_valid?
+    DateTime.now.utc <= valid_until
+  end
 end
