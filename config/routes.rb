@@ -10,4 +10,9 @@ Rails.application.routes.draw do
     get 'invites', to: 'invites#index'
     post 'invites', to: 'invites#post'
   end
+
+  namespace :student do
+    get 'invites/:identifier', to: 'invites#index'
+    post 'invites', to: 'invites#create'
+  end
 end

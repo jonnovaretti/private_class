@@ -4,6 +4,12 @@ class Student < ApplicationRecord
   has_secure_password
 
   validates :email, presence: true,
-                    uniqueness: { case_sensitive: false }, 
+                    uniqueness: { case_sensitive: false },
                     format: { with: VALID_EMAIL_EXPRESSION }
+
+  validates :name, presence: true,
+                   length: { minimum: 3, maximum: 20 }
+
+  validates :password, presence: true
+  validates :password, confirmation: { case_sensitive: true }
 end
