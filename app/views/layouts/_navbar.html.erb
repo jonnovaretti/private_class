@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
+          <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
       </ul>
       <form class="d-flex">
@@ -15,6 +15,10 @@
             <% if professor_signed_in? %>
                 <li class="nav-item">
                     <%= link_to "Logout", professor_logout_url, class: "nav-link", method: :delete %>
+                </li>
+            <% elsif student_signed_in? %>
+                <li class="nav-item">
+                    <%= link_to "Logout", student_logout_url, class: "nav-link", method: :delete %>
                 </li>
             <% else %>
                 <li class="nav-item dropdown">
@@ -26,8 +30,13 @@
                     <li><%= link_to "Student", student_signin_url, class: "nav-link" %></li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                    <%= link_to "Sign up", professor_logout_url, class: "nav-link" %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sign up
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><%= link_to "Professor", new_professor_url, class: "nav-link" %></li>
+                  </ul>
                 </li>
             <% end %>
         </ul>
