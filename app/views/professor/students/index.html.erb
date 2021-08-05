@@ -1,0 +1,27 @@
+<div class="container">
+<% if @students && @students.any? %>
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Signed up at</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @students.each do |student| %>
+        <tr>
+            <th scope="row"><%= student.id %></th>
+            <td><%= student.name %></td>
+            <td><%= student.email %></td>
+            <td><%= student.created_at.strftime("%d/%m/%y %R") %></td>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <div class="digg_pagination">
+        <%= will_paginate @students, :container => false %>
+    </div>
+    <% end %>
+</div>
