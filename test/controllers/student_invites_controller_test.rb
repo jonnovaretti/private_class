@@ -16,7 +16,8 @@ class StudentInvitesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Student.count') do
       post student_invites_url, params: { student: { email: 'student2@gmail.com',
                                                      name: 'Student name',
-                                                     password: 'pass123' } }
+                                                     password: 'pass123',
+                                                     professor: @professor } }
     end
 
     assert :success

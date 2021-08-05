@@ -10,36 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_222010) do
-
-  create_table "invites", force: :cascade do |t|
-    t.string "student_email"
-    t.string "identifier"
-    t.date "valid_until"
-    t.integer "professor_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_verified"
-    t.datetime "verified_at"
-    t.index ["professor_id"], name: "index_invites_on_professor_id"
+ActiveRecord::Schema.define(version: 20_210_804_222_010) do
+  create_table 'invites', force: :cascade do |t|
+    t.string 'student_email'
+    t.string 'identifier'
+    t.date 'valid_until'
+    t.integer 'professor_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.boolean 'is_verified'
+    t.datetime 'verified_at'
+    t.index ['professor_id'], name: 'index_invites_on_professor_id'
   end
 
-  create_table "professors", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'professors', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "professor_id"
+  create_table 'students', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'professor_id'
   end
 
-  add_foreign_key "students", "professors"
+  add_foreign_key 'students', 'professors'
 end

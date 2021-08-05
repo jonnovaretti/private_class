@@ -7,7 +7,7 @@ class Student
 
       if student&.authenticate(session_params[:password])
         session[:student_id] = student.id
-        redirect_to student_lessons_path
+        redirect_to student_home_path
       else
         flash[:notice] = 'Email or password invalid'
         render :index
