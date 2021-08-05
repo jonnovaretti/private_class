@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     post 'signin', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
     get 'lessons', to: 'lessons#index'
+    get 'home', to: 'home#index'
   end
 end

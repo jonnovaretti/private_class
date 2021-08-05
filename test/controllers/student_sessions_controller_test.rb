@@ -1,6 +1,10 @@
 class StudentSessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @student = Student.create(name: 'Student name', email: 'student@email.com', password: 'pass123')
+    professor = Professor.create(name: 'professor test name', email: 'email54@professor.com', password: 'pass12345')
+    @student = Student.create(name: 'Student name',
+                              email: 'student@email.com',
+                              password: 'pass123',
+                              professor: professor)
   end
 
   test 'should get index' do

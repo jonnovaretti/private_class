@@ -3,6 +3,8 @@ class Student < ApplicationRecord
 
   has_secure_password
 
+  belongs_to :professor
+
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
                     format: { with: VALID_EMAIL_EXPRESSION }
